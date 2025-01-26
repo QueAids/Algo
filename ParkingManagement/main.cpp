@@ -83,12 +83,12 @@ int main() {
     cin >> choice;
 
     // For Error Handling
-    if (std::cin.fail()) {
-      std::cin.clear(); // Clear error flags
+    if (cin.fail()) {
+      cin.clear(); // Clear error flags
       char c;
-      while (std::cin.get(c) && c != '\n')
+      while (cin.get(c) && c != '\n')
         ; // Ignore characters until newline
-      std::cout << "Invalid input. Please enter a valid option.\n";
+      cout << "Invalid input. Please enter a valid option.\n";
       continue;
     }
 
@@ -124,7 +124,7 @@ int main() {
       cout << "Exiting...\n";
       return 0;
     default:
-      cout << "Invalid choice. Please try again.\n";
+      cout << "\nInvalid. Please try again.\n";
     }
     cout << "\nPress Enter to continue...";
     cin.ignore();
@@ -145,20 +145,6 @@ void initializeParkingLot() {
 }
 
 void ParkVehicle(string plateNum) {
-  char confirmation;
-  cout << "You entered plate number: " << plateNum << ". Confirm? (y/n): ";
-  cin >> confirmation;
-
-  while (confirmation != 'Y' && confirmation != 'y' && confirmation != 'N' && confirmation != 'n') {
-      cout << "Invalid input. Please enter (Y/N): ";
-      cin >> confirmation;
-  }
-
-  if (confirmation == 'N' || confirmation == 'n') {
-      cout << "Operation canceled. Returning to main menu\n";
-      return;
-  }
-  
   if (isFull()) {
     cout << "Parking lot is full. Adding vehicle to the waiting queue.\n";
     enqueue(plateNum);
@@ -185,21 +171,6 @@ void ParkVehicle(string plateNum) {
 }
 
 void RetrieveVehicle(string plateNum) {
-  
-  char confirmation;
-  cout << "You entered plate number: " << plateNum << ". Confirm? (y/n): ";
-  cin >> confirmation;
-
-  while (confirmation != 'Y' && confirmation != 'y' && confirmation != 'N' && confirmation != 'n') {
-      cout << "Invalid input. Please enter (Y/N) ";
-      cin >> confirmation;
-  }
-
-  if (confirmation == 'N' || confirmation == 'n') {
-      cout << "Operation canceled. Returning to main menu\n";
-      return;
-  }
-  
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < cols; ++j) {
       if (ParkingArray[i][j] == plateNum) {
